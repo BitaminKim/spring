@@ -17,6 +17,7 @@ public class AccountService {
     @Autowired
     AccountMapper accountMapper;
 
+    
     public List<AccountVO> getAllWithDepartment() {
         return accountMapper.selectByExampleWithDepartment(new AccountExample());
     }
