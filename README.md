@@ -39,11 +39,48 @@
    </profile>
    ```
 
-7. 添加[Spring Web MVC控制器](https://mvnrepository.com/artifact/org.springframework/spring-webmvc) [Spring JDBC](https://mvnrepository.com/artifact/org.springframework/spring-jdbc) [Spring Test](https://mvnrepository.com/artifact/org.springframework/spring-test) [Spring Aspects面向切面](https://mvnrepository.com/artifact/org.springframework/spring-aspects) [MyBatis](https://mvnrepository.com/artifact/org.mybatis/mybatis) [MyBatis-Spring适配器](https://mvnrepository.com/artifact/org.mybatis/mybatis-spring) [MyBatis-Generator代码生成器](https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core) [MyBatis-PageHelper](https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper) [Mysql 数据库驱动](https://mvnrepository.com/artifact/mysql/mysql-connector-java)(Mysql数据库驱动8.0版本使用com.mysql.cj.jdbc.Driver) [数据库连接池c3p0](https://mvnrepository.com/artifact/com.mchange/c3p0) 和其他需要的依赖（mvnrepository.com中找）[alibaba fastjson](https://mvnrepository.com/artifact/com.alibaba/fastjson) [jackson-core](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core) [jackson-databind](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind) [JSR303-HibernateVaildator](https://mvnrepository.com/artifact/org.hibernate/hibernate-validator) [servlet-api](https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api ) [jstl](https://mvnrepository.com/artifact/jstl/jstl) [Junit](https://mvnrepository.com/artifact/junit/junit) 到Pom文件中
+7. 声明版本号和项目编码，以后统一在这里进行管理
 
-8. 配置web.xml 引入SSM框架
+   ```xml
+   <properties>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <spring.version>5.1.9.RELEASE</spring.version>
+     <mybatis.version>3.5.2</mybatis.version>
+     <slf4j.version>1.7.28</slf4j.version>
+   </properties>
+   ```
 
-   1. 配置Spring配置文件路径
+8. 添加[Spring Web MVC控制器](https://mvnrepository.com/artifact/org.springframework/spring-webmvc) [Spring JDBC](https://mvnrepository.com/artifact/org.springframework/spring-jdbc) [Spring Test](https://mvnrepository.com/artifact/org.springframework/spring-test) [Spring Aspects面向切面](https://mvnrepository.com/artifact/org.springframework/spring-aspects) [MyBatis](https://mvnrepository.com/artifact/org.mybatis/mybatis) [MyBatis-Spring适配器](https://mvnrepository.com/artifact/org.mybatis/mybatis-spring) [MyBatis-Generator代码生成器](https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core) [MyBatis-PageHelper](https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper) [Mysql 数据库驱动](https://mvnrepository.com/artifact/mysql/mysql-connector-java)(Mysql数据库驱动8.0版本使用com.mysql.cj.jdbc.Driver) [数据库连接池c3p0](https://mvnrepository.com/artifact/com.mchange/c3p0) 
+
+   老版本Spring使用log4j1的情况 [slf4j-api日志接口](https://mvnrepository.com/artifact/org.slf4j/slf4j-api) [slf4j-log4j12接口驱动](https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12) [log4j](https://mvnrepository.com/artifact/log4j/log4j) 
+
+   新版本Spring5.0以上使用slf4j-log4j2的情况:
+
+   |             Application(SLF4J-API To LOG4J-API)              |
+   | :----------------------------------------------------------: |
+   | [SLF4J API (slf4j-api.jar)](https://mvnrepository.com/artifact/org.slf4j/slf4j-api) |
+   |             LOG4J Bridge (log4j-slf4j-impl.jar)              |
+   | [Log4j2.x API (log4j-api-2.x.jar)](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api) |
+   | [Log4j2 Implementation (log4j-core-2.x.jar)](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core) |
+
+   使用log4j2-api的情况要兼容回slf4j的话:
+
+   |             Application(LOG4J-API To SLF4J-API)              |
+   | :----------------------------------------------------------: |
+   | [Log4j2.x API (log4j2-api-2.x.jar)](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api) |
+   | [SLF4J Bridge (log4j-to-slf4j-2.x.jar)](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-to-slf4j) |
+   | [SLF4J API (slf4j-api.jar)](https://mvnrepository.com/artifact/org.slf4j/slf4j-api) |
+   | [SLF4J Implementation (log4j-1.x.jar)](https://mvnrepository.com/artifact/log4j/log4j) |
+
+   
+
+   推荐目前直接使用log4j-api规范  [log4j-api](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api) [log4j-core](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core) [log4j-web](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-web) [异步输出日志](https://mvnrepository.com/artifact/com.lmax/disruptor)
+
+   和其他需要的依赖（mvnrepository.com中找）[alibaba fastjson](https://mvnrepository.com/artifact/com.alibaba/fastjson) [jackson-core](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core) [jackson-databind](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind) [JSR303-HibernateVaildator](https://mvnrepository.com/artifact/org.hibernate/hibernate-validator) [servlet-api](https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api ) [jstl](https://mvnrepository.com/artifact/jstl/jstl) [Junit](https://mvnrepository.com/artifact/junit/junit) 到Pom文件中
+
+9. 配置web.xml 引入SSM框架
+
+   1. 配置Spring配置文件路径，默认不写会读取/WEB-INF/applicationContext.xml这个路径，param-value可以使用*通配符导入多个文件
 
       ```xml
       <context-param>
@@ -103,7 +140,43 @@
       </filter-mapping>
       ```
 
-   5. 配置Rest风格转换器(可选)
+   5. 配置日志框架log4j
+
+      ```xml
+      <!-- 老版本5.0以下Spring使用log4j1的情况 -->
+      <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:log4j.properties</param-value>
+      </context-param>
+      <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+      </listener>
+      <!-- 新版本5.0以上Spring使用log4j2的情况 -->
+      <context-param><!-- 不指定则默认着src下的log4j2.xml和log4j2.properties和yaml文件或者json，2.0~2.4不支持properties -->
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:log4j2.xml</param-value>
+      </context-param>
+      <listener>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+      </listener>
+      
+      <filter>
+        <filter-name>log4jServletFilter</filter-name>
+        <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+      </filter>
+      <filter-mapping>
+        <filter-name>log4jServletFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+      </filter-mapping>
+      ```
+      
+      
+      
+   6. 配置Rest风格转换器(可选)
 
       ```xml
       <filter><!--配置过滤请求方式达到RestFul风格 将POST请求转换为DELETE(删除)或PUT(更新)请求 只需在参数中增加_method既可让Spring转换为对应请求方式接收 主要是为了解决form表单只支持get post的问题，让表单提交的时候添加_method参数来达到模拟其他请求-->
@@ -116,7 +189,7 @@
       </filter-mapping>	
       ```
 
-9. 配置applictionContext.xml，在resources下创建SpringConfig的xml文件'applictionContext.xml' (配置业务逻辑)
+10. 配置applictionContext.xml，在resources下创建SpringConfig的xml文件'applictionContext.xml' (配置业务逻辑)
 
    1. 配置Spring容器扫描过滤(扫描除了Controller注解以外的所有组件)
 
@@ -178,6 +251,16 @@
         <!--配置要被切入控制的数据源信息-->
         <property name="dataSource" ref="pooledDataSource"/>
       </bean>
+      
+      <!--配置事务增强如何切入 如果配置事务控制的bean的id为transactionManager则transaction-manager可以不用写，因为transaction-manager的默认值就是transactionManager-->
+      <tx:advice id="txAdvice" transaction-manager="dataSourceTransactionManager">
+        <tx:attributes>
+          <!--所有方法都是事务方法-->
+          <tx:method name="*"/>
+          <!--以方法名为get开始的所有方法作为只读事务，如果该方法出现写操作则事务失败-->
+          <tx:method name="get*" read-only="true"/>
+        </tx:attributes>
+      </tx:advice>
       <!--配置基于注解的事务配置或者xml方式的事务配置，正常情况均使用xml配置方式更为灵活-->
       <aop:config>
         <!--配置切入点表达式 execution(任意返回值 包名下任意包..任意类*任意方法(任意形参))-->
@@ -185,19 +268,22 @@
         <!--配置事务增强 指向id为txAdvice-->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
       </aop:config>
-      <!--配置事务增强如何切入 如果配置事务控制的bean的id为transactionManager则transaction-manager可以不用写，因为transaction-manager的默认值就是transactionManager-->
-      <tx:advice id="txAdvice" transaction-manager="dataSourceTransactionManager">
-        <tx:attributes>
-          <!--所有方法都是事务方法-->
-          <tx:method name="*"/>
-          <!--以方法名为get开始的所有方法-->
-          <tx:method name="get*" read-only="true"/>
-        </tx:attributes>
-      </tx:advice>
       
       ```
+      
+      ####tx:method有关设置：
+      
+      | 属性              | 是否需要？ | 默认值   | 描述                                                         |
+      | :---------------- | :--------- | :------- | :----------------------------------------------------------- |
+      | `name`            | 是         |          | 与事务属性关联的方法名。通配符（\*）可以用来指定一批关联到相同的事务属性的方法。 如：`'get*'`、`'handle*'`、`'on*Event'`等等。 |
+      | `propagation`     | 不         | REQUIRED | 事务传播行为                                                 |
+      | `isolation`       | 不         | DEFAULT  | 事务隔离级别                                                 |
+      | `timeout`         | 不         | -1       | 事务超时的时间（以秒为单位）                                 |
+      | `read-only`       | 不         | false    | 事务是否只读？（典型地，对于只执行查询的事务你会将该属性设为true，如果出现了更新、插入或是删除语句时只读事务就会失败） |
+      | `rollback-for`    | 不         |          | 将被触发进行回滚的 `Exception(s)`；以逗号分开。 如：`'com.foo.MyBusinessException,ServletException'` |
+      | `no-rollback-for` | 不         |          | 不 被触发进行回滚的 `Exception(s)`；以逗号分开。 如：`'com.foo.MyBusinessException,ServletException'` |
 
-10. 配置dispatcherServlet.xml，在resources下创建SpringConfig的xml文件 (页面跳转逻辑)
+11. 配置dispatcherServlet.xml，在resources下创建SpringConfig的xml文件 (页面跳转逻辑)
 
     1. 配置扫描组件过滤 只扫描Controller注解
 
@@ -240,10 +326,11 @@
            </bean>
          </mvc:message-converters>
        </mvc:annotation-driven>
+       <!-- 配置AOP注解自动扫描 -->
+       <aop:aspectj-autoproxy expose-proxy="true" />
        
+    ```
        
-       ```
-
        ```java
        import com.fasterxml.jackson.core.JsonGenerator;
        import com.fasterxml.jackson.core.JsonProcessingException;
@@ -288,7 +375,7 @@
 
     
 
-11. 配置mybatisConfig.xml，在resources下创建SpringConfig的xml文件 (配置数据映射)
+12. 配置mybatisConfig.xml，在resources下创建SpringConfig的xml文件 (配置数据映射)
 
     1. 从[Mybatis官网](http://www.mybatis.org/mybatis-3/zh/index.html)中的[入门](http://www.mybatis.org/mybatis-3/zh/getting-started.html)中获取到xml的配置文件
 
@@ -311,9 +398,316 @@
        
        ```
 
-12. 配置mybatisGeneratorCore.xml，在项目根目录下创建代码生成配置的xml文件 (配置生成代码)
+13. 配置日志框架log4j.properties(也可以配置XML),在项目根目录下创建日志规则配置的properties文件
+
+    ```properties
+    # 日志框架分3大组件 
+    # Loggers记录器(日志框架的基本配置,日志级别)
+    #  Loggers日志级别依次优先级分为[DEBUG<INFO<WARN<ERROR<FATAL]
+    #  声明的时候声明输出级别和附加器名称(可自定义附加器名称,下方配置需跟该名称一致)
+    # Appenders附加器(日志的目标->'文件'，'控制台',日志输出方式) 
+    #  Appenders输出目的分为[
+    #		ConsoleAppender(控制台),
+    #		FileAppender(文件),
+    #		DailyRollingFileAppender(每天产生一个日志文件)
+    #		RollingFileAppender(按照文件大小到达指定尺寸的时候产生一个新的日志文件)
+    #	]
+    # Layouts布局器(日志具体格式,日志输出的格式) 使用指定的占位符进行格式处理
+    
+    #1.x版本配置，
+    log4j.rootLogger = debug,stdout,fout
+    
+    log4j.appender.stdout = org.apache.log4j.ConsoleAppender
+    
+    log4j.appender.stdout.Target = System.out
+    log4j.appender.stdout.Threshold = debug
+    log4j.appender.stdout.layout = org.apache.log4j.PatternLayout
+    log4j.appender.stdout.layout.ConversionPattern = %d [%-5p]%l %m%n
+    
+    log4j.appender.fout = org.apache.log4j.DailyRollingFileAppender
+    log4j.appender.fout.File = log/log.log
+    
+    log4j.appender.fout.DatePattern = yyyy-MM-dd'.log'
+    log4j.appender.fout.Encoding = UTF-8
+    log4j.appender.fout.Append = true
+    log4j.appender.fout.ImmediateFlush= true
+    log4j.appender.fout.Threshold = DEBUG
+    log4j.appender.fout.layout = org.apache.log4j.PatternLayout
+    log4j.appender.fout.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}[%-5p]%l %m%n
+    
+    
+    # 2.x版本配置
+    
+    status = warn
+    name = MyApp
+     
+    appender.console.type = Console
+    appender.console.name = consoleLog
+    appender.console.filter.threshold.type = ThresholdFilter
+    appender.console.filter.threshold.level = debug
+    appender.console.layout.type = PatternLayout
+    appender.console.layout.pattern = %m%n
+    appender.console.target = System_out
+     
+    appender.rolling.type = File
+    appender.rolling.name = fileLog
+    appender.rolling.filter.threshold.type = ThresholdFilter
+    appender.rolling.filter.threshold.level = error
+    appender.rolling.layout.type = PatternLayout
+    appender.rolling.layout.pattern = %d-%m%n
+    appender.rolling.append = true
+    appender.rolling.fileName = e:\\log.log
+     
+    rootLogger.level = debug
+    rootLogger.appenderRef.consolelogdemo.ref = consoleLog
+    rootLogger.appenderRef.filelogdemo.ref = fileLog
+    ```
+
+    ```xml
+    <!-- 旧版本1.x的xml配置 -->
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+    <log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/' >
+    	<properties>
+        <demo.loggingLevel>INFO</demo.loggingLevel>
+      </properties>
+      
+      <appender name="myConsole" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] - %m - %l%n" />
+        </layout>
+    
+        <!--过滤器设置输出的级别-->   
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+          <param name="levelMin" value="debug" />
+          <param name="levelMax" value="warn" />
+          <param name="AcceptOnMatch" value="true" />
+        </filter>
+      </appender>
+    
+    
+      <appender name="myFile" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="log/log.log" /><!-- 设置日志输出文件名和路径 -->
+        <!-- 设置是否在重新启动服务时，在原有日志的基础添加新日志 -->
+        <param name="Append" value="true" />
+        <param name="MaxBackupIndex" value="10" />
+        <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="%p (%c:%L)- %m%n" />
+        </layout>
+      </appender>
+    
+      <!-- 推荐主要配置这个类型 -->
+      <appender name="activexAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="log/activex.log" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+        <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] - %m - %l%n" />
+        </layout>
+      </appender>
+      
+      <!-- 区分模块可以使用这种配置 -->
+      <appender name="errorAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="log/common-error.log" />
+        <param name="Append" value="true" /> 
+        <param name="Encoding" value="UTF-8" />  
+        <param name="Threshold" value="error" />
+        <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] - %m - %l%n" />
+        </layout>
+      </appender>
+      
+      <appender name="moduleAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="log/module.log" />   
+        <param name="Append" value="true" /> 
+        <param name="Encoding" value="UTF-8" />
+        <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] - %m - %l%n" />
+        </layout>
+      </appender>
+    
+      <!-- 指定logger的设置，additivity指示是否遵循缺省的继承机制-->
+      <logger name="ink.bitamin" additivity="false">
+        <priority value ="info"/>
+        <appender-ref ref="activexAppender" />
+      </logger>
+      
+      <logger name="ink.bitamin.controller" additivity="false">
+        <priority value ="info"/>
+        <appender-ref ref="moduleAppender" />  
+        <appender-ref ref="errorAppender" />
+      </logger>
+    
+      <!-- 根logger的设置-->
+      <root>
+        <level value="${demo.loggingLevel}"/>
+        <appender-ref ref="myConsole"/>
+        <appender-ref ref="myFile"/>
+      </root>
+    
+    </log4j:configuration>
+    
+    <!-- 新版本2.x的xml配置 官方默认文件名log4j2.xml-->
+    <!-- ${sys:catalina.home} 指向tomcat目录 -->
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Configuration status="warn">
+      <properties>
+        <property name="LOG_HOME">logs</property>
+        <property name="FILE_NAME">log</property>    
+        <property name="LOGGER_LEVEL">info</property>
+      </properties>
+      
+    	<appenders>
+    		<Console name="consoleLog" target="SYSTEM_OUT">
+    			<ThresholdFilter level="debug"/>
+    			<PatternLayout pattern="%m%n" />
+    		</Console>
+    		
+    		<File name="fileLog" fileName="${sys:catalina.home}/${LOG_HOME}/${FILE_NAME}.log" append="true">
+    			<ThresholdFilter level="${LOGGER_LEVEL}" />
+    			<PatternLayout pattern="%d-%m%n" />
+    		</File>
+        
+        <RollingFile name="rollingFileLog" fileName="${sys:catalina.home}/${LOG_HOME}/${FILE_NAME}.log" append="true" filePattern="${sys:catalina.home}/${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz"
+                immediateFlush="true">
+    			<ThresholdFilter level="${LOGGER_LEVEL}" />
+    			<PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+          <Policies>
+            <TimeBasedTriggeringPolicy /><!-- interval="2 hour" 指定多长时间滚动一次-->
+            <SizeBasedTriggeringPolicy size="10 MB" /><!-- 指定文件多大滚动一次-->
+          </Policies>
+          <DefaultRolloverStrategy max="20" /><!-- 设置同名文件i最大值（文件夹下最大文件数），超过则覆盖-->
+    		</RollingFile>
+        
+        <!-- 去除了1.x版本的DailyRollingFileAppender，通过更改PatternLayout格式时间来控制按时间分文件和配置TimeBasedTriggeringPolicy控制精度，此处为24小时的意思 -->
+        <RollingFile name="dailyRollingFileLog" fileName="${sys:catalina.home}/${LOG_HOME}/${FILE_NAME}.log" append="true" filePattern="${sys:catalina.home}/${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz"
+                immediateFlush="true">
+    			<ThresholdFilter level="${LOGGER_LEVEL}" />
+    			<PatternLayout pattern="%-d{yyyy-MM-dd HH:mm:ss} [%thread] %m%n"/>
+        		<Policies>
+        			<TimeBasedTriggeringPolicy modulate="true" interval="24 hour"/>
+        		</Policies>
+          <DefaultRolloverStrategy max="20"/>
+    		</RollingFile>
+        
+    	</appenders>
+    	     
+    	<loggers>
+    		<root level="${LOGGER_LEVEL}">
+    			<appender-ref ref="consoleLog"></appender-ref>
+    			<appender-ref ref="fileLog"></appender-ref>
+    		</root>
+    	</loggers>
+    
+    ```
+
+    标准的按照文件大小和时间分割的xml
+
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <configuration status="error">
+    	<!-- 先定义所有的appender -->
+    	<appenders>
+    		<!-- 这个输出控制台的配置 -->
+    		<Console name="Console" target="SYSTEM_OUT">
+    			<!-- 控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
+    			<ThresholdFilter level="debug" onMatch="ACCEPT"
+    				onMismatch="DENY" />
+    			<!-- 这个都知道是输出日志的格式 -->
+    			<PatternLayout
+    				pattern="[ %-20class{1} ] %msg%n" />
+    		</Console>
+    		<!-- 这个会打印出所有的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面，作为存档 -->
+    		<RollingFile name="RollingFile-info" fileName="log4j2/info/info.log"
+    			filePattern="log4j2/info/$${date:yyyy-MM}/%d{MM-dd-yyyy}-%i.log">
+    			<!-- pattern = "[ 日志级别 | 类名 | 方法名 | 行数 | 线程名 | 区分客户端 | 时间 ] - 日志信息" -->
+    			<PatternLayout
+    				pattern="[ %level{length=1} | %-20class{1} | %-15M | %-2L | %-2t | %X{5} | %d{yyyy-MM-dd HH:mm:ss} ] %msg%n" />
+    			<Policies>
+    				<TimeBasedTriggeringPolicy interval="24" />			<!--多长时间滚动一次 -->
+    				<SizeBasedTriggeringPolicy size="1 MB" />		<!-- 一个日志文件的最大大小 -->
+    			</Policies>
+    			<DefaultRolloverStrategy max="20" />   <!--文件夹下最多的文件个数 -->
+    		</RollingFile>
+    		<RollingFile name="RollingFile-debug" fileName="log4j2/debug/debug.log"
+    			filePattern="log4j2/debug/$${date:yyyy-MM}/%d{MM-dd-yyyy}-%i.log">
+    			<!-- pattern = "[ 日志级别 | 类名 | 方法名 | 行数 | 线程名 | 区分客户端 | 时间 ] - 日志信息" -->
+    			<PatternLayout
+    				pattern="[ %level{length=1} | %-20class{1} | %-15M | %-2L | %-2t | %X{5} | %d{yyyy-MM-dd HH:mm:ss} ] %msg%n" />
+    			<Policies>
+    				<TimeBasedTriggeringPolicy interval="24" />			<!--多长时间滚动一次 -->
+    				<SizeBasedTriggeringPolicy size="1024 KB" />		<!-- 一个日志文件的最大大小 -->
+    			</Policies>
+    			<DefaultRolloverStrategy max="20" />   <!--文件夹下最多的文件个数 -->
+    		</RollingFile>
+    		<RollingFile name="RollingFile-error" fileName="log4j2/error/error.log"
+    			filePattern="log4j2/error/$${date:yyyy-MM}/%d{MM-dd-yyyy}-%i.log">
+    			<!-- pattern = "[ 日志级别 | 类名 | 方法名 | 行数 | 线程名 | 区分客户端 | 时间 ] - 日志信息" -->
+    			<PatternLayout
+    				pattern="[ %level{length=1} | %-20class{1} | %-15M | %-2L | %-2t | %X{5} | %d{yyyy-MM-dd HH:mm:ss} ] %msg%n" />
+    			<Policies>
+    				<TimeBasedTriggeringPolicy interval="24" />			<!--多长时间滚动一次 -->
+    				<SizeBasedTriggeringPolicy size="1024 KB" />		<!-- 一个日志文件的最大大小 -->
+    			</Policies>
+    			<DefaultRolloverStrategy max="20" />   <!--文件夹下最多的文件个数 -->
+    		</RollingFile>
+        
+        <!-- 仅保存距今24小时的日志压缩文件 -->
+        <RollingRandomAccessFile name="msgAppender" immediateFlush="true"  
+                                 fileName="${MSG_LOG_HOME}/msg.log"  
+                                 filePattern="${MSG_LOG_HOME}/backup/msg.%d{yyyyMMddHH}.zip">  
+    
+          <Filters>  
+            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>  
+          </Filters>  
+    
+          <PatternLayout pattern="%m%n" />  
+          <Policies>  
+            <TimeBasedTriggeringPolicy interval="1" modulate="true"/>  
+          </Policies>    
+    
+          <DefaultRolloverStrategy max="24">  
+            <Delete basePath="${MSG_LOG_HOME}" maxDepth="2">  
+              <IfFileName glob="*/msg.*.zip" />  
+              <IfLastModified age="24H" />  
+            </Delete>  
+          </DefaultRolloverStrategy>  
+        </RollingRandomAccessFile>  
+    	</appenders>
+    	<!-- 然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+    	<loggers>
+    		<!-- 此处name里面的为对应的包名，包名必须和里面的类的package相同 -->
+    		<logger name="ink.bitamin.info" level="debug">
+    			<!-- ref的值是对应使用的appenders的值 -->
+    			<appender-ref ref="RollingFile-info"/>
+    		</logger>
+    		<logger name="ink.bitamin.debug" level="debug" >
+    			<appender-ref ref="RollingFile-debug"/>
+    		</logger>
+    		<AsyncLogger name="ink.bitamin.error" level="debug">
+    			<appender-ref ref="RollingFile-error"/>
+    		</AsyncLogger>
+    		<!-- 建立一个默认的root的logger -->
+    		<root level="trace">
+    			<appender-ref ref="Console" />
+    		</root>
+    	</loggers>
+    </configuration>
+    ```
+
+    
+
+14. 配置mybatisGeneratorCore.xml，在项目根目录下创建代码生成配置的xml文件 (配置生成代码)
 
     1. 从Mybatis官网的[Generator工具页面](http://www.mybatis.org/generator/configreference/xmlconfig.html)获取到Mybatis-generator-core的xml配置文件并修改
+
+       ##### generator.xml使用需要修改的点:
+
+       classPathEntry的location属性，该属性指定的是本机的MySQL驱动包的绝对路径地址。
+       jdbcConnection的connectionURL，userId，password属性，该属性用于指定MySQL数据库的链接地址，用户名以及密码。
+       javaModelGenerator的targetPackage，targetProject属性，该属性用于指定生成的实体类的所在包名以及代码生成位置。
+       sqlMapGenerator的targetPackage，targetProject属性，该属性用于指定生成的*.xml文件的所在包名以及代码生成位置。
+       javaClientGenerator的targetPackage，targetProject属性，该属性用于指定生成的mapper文件的所在包名以及代码生成位置。
+       table的tableName，domainObjectName属性，该属性用于指定需要生成的数据表名称以及生成后的实体类名称。其中table标签可以使用多次，一次对应一张表。
 
        ```xml
        <?xml version="1.0" encoding="UTF-8"?>
@@ -322,6 +716,10 @@
          "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
        
        <generatorConfiguration>
+         
+         <!-- 配置mysql 驱动jar包路径.用了绝对路径 用非Java代码的方式时需要手动指定驱动 
+         <classPathEntry location="/Users/bitamin/.m2/repository/mysql/mysql-connector-java/5.1.34/mysql-connector-java-5.1.34.jar" />
+         -->
          <context id="DB2Tables" targetRuntime="MyBatis3">
            
            <!-- 配置生成代码的时候去除注释 -->
@@ -365,9 +763,9 @@
        
        ```
 
-    2. 有4种方式可以生成代码 ，最常用的有eclipse，Maven，Java方式，以下使用Java方式（[官网](http://www.mybatis.org/generator/running/runningWithJava.html)可找到该代码）
+    2. 有4种方式可以生成代码 ，最常用的有eclipse，IDEA-Maven，Java，Maven命令行方式
 
-       编写完毕后运行即可生成
+       Java方式（[官网](http://www.mybatis.org/generator/running/runningWithJava.html)可找到该代码）编写完毕后运行即可生成
 
        ```Java
        package ink.bitamin.test;
@@ -395,7 +793,41 @@
        }
        ```
 
-    3. 2
+       IDEA-Maven方式
+
+       ```xml
+       <!-- pom中配置生成器插件和导入数据库驱动依赖 -->
+       
+       <dependency>
+         <groupId>mysql</groupId>
+         <artifactId>mysql-connector-java</artifactId>
+         <version>5.1.34</version>
+       </dependency>
+       
+       <build>
+         <plugins>
+           <plugin>
+             <groupId>org.mybatis.generator</groupId>
+             <artifactId>mybatis-generator-maven-plugin</artifactId>
+             <version>1.3.5</version>
+             <configuration>
+               <verbose>true</verbose>
+               <overwrite>true</overwrite>
+             </configuration>
+           </plugin>
+         </plugins>
+       </build>
+       
+       <!-- 使用IDEA右侧的maven运行mybatis-generator-maven-plugin插件：工程名->Plugins->mybatis-generator->mybatis-generator:generate->Run Maven Build -->
+       ```
+
+       命令行方式(下载Mybatis生成代码的Jar包执行)
+
+       ```bash
+       java -jar mybatis-generator-core-1.3.2.jar -configfile generator.xml -overwrite
+       ```
+
+    3. 
 
 ### Mybatis业务修改
 
@@ -556,9 +988,10 @@ public class AccountVO extends Account {
 
 ### 前端控制器
 
-1. 配置一个返回VO封装对象
+1. 配置一个返回通用数据结构的封装对象
 
    ```java
+   
    package ink.bitamin.entity;
    
    import java.util.HashMap;
@@ -626,7 +1059,69 @@ public class AccountVO extends Account {
    }
    ```
 
-2. 编写一个控制器调用Service和使用PageHelper插件进行分页查询，然后返回MessageVO对象
+2. 编写AOP切面切入Controller层打印Request请求和Response响应信息和总耗时
+
+   ```java
+   package ink.bitamin.aspects;
+   
+   import org.apache.logging.log4j.LogManager;
+   import org.apache.logging.log4j.Logger;
+   import org.aspectj.lang.JoinPoint;
+   import org.aspectj.lang.ProceedingJoinPoint;
+   import org.aspectj.lang.annotation.*;
+   import org.springframework.stereotype.Component;
+   import org.springframework.web.context.request.RequestContextHolder;
+   import org.springframework.web.context.request.ServletRequestAttributes;
+   
+   import javax.servlet.http.HttpServletRequest;
+   import java.util.Arrays;
+   
+   @Aspect
+   @Component
+   public class WebLogAspect {
+       private final static Logger logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+       
+       //控制需要切入log的包
+       @Pointcut("execution(public * ink.bitamin.controller.*.*(..))")
+       public void webLog(){
+   
+       }
+   
+       @Before("webLog()")
+       public void doBefore(JoinPoint joinPoint) throws Throwable {
+   
+           ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+           HttpServletRequest request = attributes.getRequest();
+   
+           logger.info("*********************** Request Detail **************************");
+           logger.info("HTTP URL:" + request.getRequestURL().toString());
+           logger.info("HTTP Method:" + request.getMethod());
+           logger.info("HTTP IP:" + request.getRemoteAddr());
+           logger.info("Class Method:" + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+           logger.info("Class Arguments:" + Arrays.toString(joinPoint.getArgs()));
+           logger.info("Request QueryString:" + request.getQueryString());
+   
+       }
+   
+       @Around("webLog()")
+       public Object doAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+           long startTime = System.currentTimeMillis();
+           Object object = proceedingJoinPoint.proceed();
+           logger.info("Time:" + (System.currentTimeMillis() - startTime) + "ms");
+           return object;
+       }
+   
+       @AfterReturning(returning = "result", pointcut = "webLog()")
+       public void doAfterReturning(Object result) throws Throwable {
+           logger.info("response:" + result);
+           logger.info("***********************  Request End  ***************************");
+       }
+   }
+   ```
+   
+   
+   
+3. 编写一个控制器调用Service和使用PageHelper插件进行分页查询，然后返回MessageVO对象
 
    ```java
    @RestController//RESTFul风格方式
@@ -738,7 +1233,7 @@ public class AccountVO extends Account {
 
    
 
-3. 2
+4. 2
 
 ### 单元测试
 

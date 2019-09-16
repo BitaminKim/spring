@@ -28,5 +28,6 @@
 
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
+    <aop:aspectj-autoproxy expose-proxy="true" />
     
 </beans>

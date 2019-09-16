@@ -2,6 +2,7 @@ package ink.bitamin.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import ink.bitamin.annotation.LogAnnotate;
 import ink.bitamin.entity.vo.MessageVO;
 import ink.bitamin.entity.vo.AccountVO;
 import ink.bitamin.service.AccountService;
@@ -15,10 +16,10 @@ import java.util.Map;
 @Controller
 public class AccountController {
 
-
     @Autowired
     AccountService accountService;
 
+    @LogAnnotate("getAccount_method")
     @ResponseBody
     @RequestMapping(value = "/account/users/pageNum/{pageNum}", method = RequestMethod.GET, produces = "application/json")
     public MessageVO getAccounts(

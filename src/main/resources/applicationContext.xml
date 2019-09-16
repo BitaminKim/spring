@@ -32,6 +32,7 @@
     <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="pooledDataSource"/>
     </bean>
+
     <aop:config>
         <aop:pointcut id="txPoint" expression="execution(* ink.bitamin.service..*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
@@ -42,4 +43,5 @@
             <tx:method name="get*" read-only="true"/>
         </tx:attributes>
     </tx:advice>
+
 </beans>

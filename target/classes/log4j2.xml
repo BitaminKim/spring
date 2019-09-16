@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="30" name="MyApp">
+    <properties>
+        <property name="LOG_HOME">logs</property>
+        <property name="FILE_NAME">log</property>
+        <property name="LOGGER_LEVEL">INFO</property>
+    </properties>
+
+    <appenders>
+        <Console name="consoleLog" target="SYSTEM_OUT">
+            <ThresholdFilter level="debug"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+
+        <RollingFile name="rollingFileLog" fileName="${sys:catalina.home}/${LOG_HOME}/${FILE_NAME}.log" append="true" filePattern="${sys:catalina.home}/${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz"
+                     immediateFlush="true">
+            <ThresholdFilter level="${LOGGER_LEVEL}" />
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm} %level [%thread][%file:%line] - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="24" />
+                <SizeBasedTriggeringPolicy size="1 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="24"/>
+        </RollingFile>
+    </appenders>
+         
+    <loggers>
+<!--        <AsyncLogger name="ink.bitamin.controller" level="${LOGGER_LEVEL}">-->
+<!--            <appender-ref ref="rollingFileLog"/>-->
+<!--        </AsyncLogger>-->
+        <root level="${LOGGER_LEVEL}">
+            <appender-ref ref="consoleLog" />
+            <appender-ref ref="rollingFileLog" />
+        </root>
+    </loggers>
+</Configuration>
